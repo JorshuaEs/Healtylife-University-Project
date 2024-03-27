@@ -13,6 +13,12 @@ class AppRoutes {
       route: 'loading',
       screen: const LoadingScreen(),
     ),
+    MenuOption(
+      title: 'Login',
+      icon: Icons.login,
+      route: 'login',
+      screen: const LoginScreen(),
+    ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};

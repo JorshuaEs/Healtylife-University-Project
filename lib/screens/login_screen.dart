@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
           //accentColor: Colors.yellow,
           errorColor: Colors.deepOrange,
           titleStyle: const TextStyle(
-            color: Colors.greenAccent,
+            color: Color.fromRGBO(105, 240, 174, 1),
             fontFamily: 'Quicksand',
             letterSpacing: 4,
           ),

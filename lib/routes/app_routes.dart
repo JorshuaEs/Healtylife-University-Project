@@ -23,7 +23,7 @@ class AppRoutes {
       title: 'Articles',
       icon: Icons.article,
       route: 'articles',
-      screen: const ArticleScreen(),
+      screen: const ArticleHomeScreen(),
     ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

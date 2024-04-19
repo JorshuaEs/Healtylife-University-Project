@@ -8,6 +8,8 @@ import 'package:healty_life/screens/screens.dart';
 class ArticleHomeScreen extends StatelessWidget {
   const ArticleHomeScreen({Key? key}) : super(key: key);
 
+  static const String routeName = '/articlesHome';
+
   @override
   Widget build(BuildContext context) {
     List<String> tabs = ['Salud', 'Dietas', 'Informacion', 'Tips'];
@@ -69,8 +71,8 @@ class _CategoryArticle extends StatelessWidget {
             children: tabs
                 .map(
                   (tab) => ListView.builder(
-                    itemCount: articles.length,
                     shrinkWrap: true,
+                    itemCount: articles.length,
                     itemBuilder: ((context, index) {
                       return InkWell(
                         onTap: () {

@@ -5,6 +5,8 @@ import 'package:healty_life/routes/app_routes.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  static const String routeName = '/';
+
   @override
   Widget build(BuildContext context) {
     final menuOption = AppRoutes.menuOptions;

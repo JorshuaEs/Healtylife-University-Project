@@ -10,6 +10,8 @@ const users = {
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
+  static const String routeName = '/login';
+
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {

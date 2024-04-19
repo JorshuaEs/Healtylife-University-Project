@@ -10,19 +10,19 @@ class AppRoutes {
     MenuOption(
       title: 'Loading',
       icon: Icons.access_time,
-      route: 'loading',
+      route: '/loading',
       screen: const LoadingScreen(),
     ),
     MenuOption(
       title: 'Login',
       icon: Icons.login,
-      route: 'login',
+      route: '/login',
       screen: const LoginScreen(),
     ),
     MenuOption(
       title: 'Articles',
       icon: Icons.article,
-      route: 'articles',
+      route: '/articlesHome',
       screen: const ArticleHomeScreen(),
     ),
   ];

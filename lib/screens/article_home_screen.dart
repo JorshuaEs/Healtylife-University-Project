@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:healty_life/models/article_model.dart';
 import 'package:healty_life/widgets/widgets.dart';
-import 'package:healty_life/routes/app_routes.dart';
+
 import 'package:healty_life/screens/screens.dart';
 
 class ArticleHomeScreen extends StatelessWidget {
@@ -18,17 +17,10 @@ class ArticleHomeScreen extends StatelessWidget {
       initialIndex: 0,
       length: tabs.length,
       child: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-          ),
-        ),
+        ),*/
         body: ListView(
             padding: const EdgeInsets.all(20),
             children: [const _DiscoverArticle(), _CategoryArticle(tabs: tabs)]),
@@ -185,7 +177,7 @@ class _DiscoverArticle extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

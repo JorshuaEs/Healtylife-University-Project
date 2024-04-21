@@ -89,12 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           ...menuOptions.map((option) => ListTile(
                 leading: Icon(option.icon),
-                title: Text(option.title),
+                title: Text(option.title!),
                 onTap: () {
                   Navigator.pop(context);
 
                   setState(() {
-                    _currentScreen = option.screen;
+                    _currentScreen = option.screen!;
                   });
                 },
               )),

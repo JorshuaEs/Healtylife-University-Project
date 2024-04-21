@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:healty_life/screens/calorias_screen.dart';
+//import 'package:healty_life/screens/botella_screen.dart';
 //import 'package:healty_life/routes/app_routes.dart';
 import 'package:healty_life/screens/home_screen.dart';
 import 'package:healty_life/screens/settings_screen.dart';
-
 
 import 'screens/screens.dart';
 
@@ -28,8 +29,10 @@ class MainApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         LoadingScreen.routeName: (context) => const LoadingScreen(),
         ArticleScreen.routeName: (context) => const ArticleScreen(),
-        SettingsScreen.routeName:(context) => const SettingsScreen()
-
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
+        BotellaScreen.routeName: (context) => const BotellaScreen(),
+        CaloriesCalculatorScreen.routeName: (context) =>
+            CaloriesCalculatorScreen(),
       },
     );
   }

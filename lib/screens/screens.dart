@@ -12,3 +12,6 @@ export 'package:healty_life/screens/article_screen.dart';
 
 export 'package:healty_life/screens/settings_screen.dart';
 
+export 'package:healty_life/screens/Botella_screen.dart';
+
+export 'package:healty_life/screens/calorias_screen.dart';

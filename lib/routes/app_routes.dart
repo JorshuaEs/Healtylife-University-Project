@@ -20,6 +20,18 @@ class AppRoutes {
       screen: const LoginScreen(),
     ),
     MenuOption(
+      title: 'Glasses of water the day',
+      icon: Icons.water_outlined,
+      route: '/Botella',
+      screen: const BotellaScreen(),
+    ),
+    MenuOption(
+      title: 'Calories',
+      icon: Icons.water_outlined,
+      route: '/Calorias',
+      screen: CaloriesCalculatorScreen(),
+    ),
+    MenuOption(
       title: 'Articles',
       icon: Icons.article,
       route: '/articlesHome',

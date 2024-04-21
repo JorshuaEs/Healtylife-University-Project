@@ -25,6 +25,12 @@ class AppRoutes {
       route: '/articlesHome',
       screen: const ArticleHomeScreen(),
     ),
+    MenuOption(
+      title: 'Settings',
+      icon: Icons.build_outlined,
+      route: '/settings',
+      screen: const SettingsScreen(),
+    ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};

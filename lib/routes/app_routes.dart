@@ -43,12 +43,6 @@ class AppRoutes {
       screen: const ArticleHomeScreen(),
     ),
     MenuOption(
-      title: 'Vasos de Agua al Dia',
-      icon: Icons.article,
-      route: '/Botella',
-      screen: const BotellaScreen(),
-    ),
-    MenuOption(
       title: 'Settings',
       icon: Icons.build_outlined,
       route: '/settings',

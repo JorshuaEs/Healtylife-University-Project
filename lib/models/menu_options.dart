@@ -1,15 +1,17 @@
 import "package:flutter/material.dart";
 
 class MenuOption {
-  final String route;
-  final IconData icon;
-  final String title;
-  final Widget screen;
+  final String? route;
+  final IconData? icon;
+  final String? title;
+  final Widget? screen;
+  final VoidCallback? onTap;
 
   MenuOption({
-    required this.route,
-    required this.icon,
-    required this.title,
-    required this.screen,
+    this.route,
+    this.icon,
+    this.title,
+    this.screen,
+    this.onTap,
   });
 }

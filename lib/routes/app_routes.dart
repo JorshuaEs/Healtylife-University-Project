@@ -25,6 +25,12 @@ class AppRoutes {
       route: '/articlesHome',
       screen: const ArticleHomeScreen(),
     ),
+    MenuOption(
+      title: 'Vasos de Agua al Dia',
+      icon: Icons.article,
+      route: '/Botella',
+      screen: const ArticleHomeScreen(),
+    ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healty_life/routes/app_routes.dart';
+//import 'package:healty_life/routes/app_routes.dart';
 import 'package:healty_life/screens/home_screen.dart';
 
 import 'screens/screens.dart';
@@ -26,6 +26,7 @@ class MainApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         LoadingScreen.routeName: (context) => const LoadingScreen(),
         ArticleScreen.routeName: (context) => const ArticleScreen(),
+        BotellaScreen.routeName: (context) => const BotellaScreen(),
       },
     );
   }

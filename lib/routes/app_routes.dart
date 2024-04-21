@@ -27,7 +27,7 @@ class AppRoutes {
     ),
     MenuOption(
       title: 'Calories',
-      icon: Icons.water_outlined,
+      icon: Icons.food_bank,
       route: '/Calorias',
       screen: CaloriesCalculatorScreen(),
     ),

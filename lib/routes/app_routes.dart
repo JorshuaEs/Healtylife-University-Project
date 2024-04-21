@@ -26,10 +26,17 @@ class AppRoutes {
       screen: const ArticleHomeScreen(),
     ),
     MenuOption(
+<<<<<<< HEAD
       title: 'Vasos de Agua al Dia',
       icon: Icons.article,
       route: '/Botella',
       screen: const ArticleHomeScreen(),
+=======
+      title: 'Settings',
+      icon: Icons.build_outlined,
+      route: '/settings',
+      screen: const SettingsScreen(),
+>>>>>>> 8d876210408e1bd8873a3b3e4aa910b44b1b95ce
     ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

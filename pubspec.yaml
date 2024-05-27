@@ -13,6 +13,8 @@ dependencies:
   js: ^0.6.7
   equatable: ^2.0.0
   ionicons: ^0.2.2
+  firebase_core: ^2.31.1
+  firebase_auth: ^4.19.6
 
 dev_dependencies:
   flutter_test:

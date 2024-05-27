@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:healty_life/screens/calorias_screen.dart';
 //import 'package:healty_life/screens/botella_screen.dart';
@@ -7,7 +9,11 @@ import 'package:healty_life/screens/settings_screen.dart';
 
 import 'screens/screens.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 

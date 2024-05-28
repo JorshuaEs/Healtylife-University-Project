@@ -53,23 +53,23 @@ class DefaultFirebaseOptions {
     projectId: 'healtylife-87e82',
     authDomain: 'healtylife-87e82.firebaseapp.com',
     storageBucket: 'healtylife-87e82.appspot.com',
+    databaseURL: 'https://healtylife-87e82-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCxVivvqvIvqsdFLRCpgouoLmtG5VE564s',
-    appId: '1:766619242425:android:2a9d0bb5989b85fcf47068',
-    messagingSenderId: '766619242425',
-    projectId: 'healtylife-87e82',
-    storageBucket: 'healtylife-87e82.appspot.com',
-  );
+      apiKey: 'AIzaSyCxVivvqvIvqsdFLRCpgouoLmtG5VE564s',
+      appId: '1:766619242425:android:2a9d0bb5989b85fcf47068',
+      messagingSenderId: '766619242425',
+      projectId: 'healtylife-87e82',
+      storageBucket: 'healtylife-87e82.appspot.com',
+      databaseURL: 'https://healtylife-87e82-default-rtdb.firebaseio.com/');
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBNbPcO0UtFnuIedFx-Xhdqm-rDPMhWEho',
-    appId: '1:766619242425:ios:73d0decda816744ff47068',
-    messagingSenderId: '766619242425',
-    projectId: 'healtylife-87e82',
-    storageBucket: 'healtylife-87e82.appspot.com',
-    iosBundleId: 'com.example.healtyLife',
-  );
-
+      apiKey: 'AIzaSyBNbPcO0UtFnuIedFx-Xhdqm-rDPMhWEho',
+      appId: '1:766619242425:ios:73d0decda816744ff47068',
+      messagingSenderId: '766619242425',
+      projectId: 'healtylife-87e82',
+      storageBucket: 'healtylife-87e82.appspot.com',
+      iosBundleId: 'com.example.healtyLife',
+      databaseURL: 'https://healtylife-87e82-default-rtdb.firebaseio.com/');
 }

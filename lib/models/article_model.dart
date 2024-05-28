@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Article extends Equatable {
-  final String id;
+  final int id;
   final String title;
   final String subtitle;
   final String body;
@@ -25,7 +25,7 @@ class Article extends Equatable {
 
   static List<Article> articles = [
     Article(
-      id: '1',
+      id: 1,
       title: 'Proin purus est, lobortis a rhoncus nec, scelerisque quis risus.',
       subtitle:
           'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
@@ -40,7 +40,7 @@ class Article extends Equatable {
       createdAt: DateTime.now().subtract(const Duration(hours: 1)),
     ),
     Article(
-      id: '2',
+      id: 2,
       title: 'Donec accumsan urna varius molestie ultrices.',
       subtitle:
           '2 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
@@ -55,7 +55,7 @@ class Article extends Equatable {
       createdAt: DateTime.now().subtract(const Duration(hours: 7)),
     ),
     Article(
-      id: '3',
+      id: 3,
       title: 'Cras id eros varius, commodo eros eget, efficitur purus.',
       subtitle:
           '3 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',

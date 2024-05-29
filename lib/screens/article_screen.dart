@@ -459,21 +459,6 @@ class _ArticleBody extends StatelessWidget {
                 ],
               ),
               const SizedBox(width: 10.0),
-              CustomTag(
-                backgroundColor: Colors.grey.shade200,
-                children: [
-                  const Icon(
-                    Icons.remove_red_eye,
-                    color: Colors.grey,
-                    size: 15,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    '1.2k',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
             ],
           ),
           const SizedBox(height: 20),

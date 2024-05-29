@@ -2,103 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 /*
-class Article extends Equatable {
-  final int id;
-  final String title;
-  final String subtitle;
-  final String body;
-  final String author;
-  final String authorImageUrl;
-  final String category;
-  final String imageUrl;
-  final DateTime createdAt;
-
-  const Article({
-    required this.id,
-    required this.title,
-    required this.subtitle,
-    required this.body,
-    required this.author,
-    required this.authorImageUrl,
-    required this.category,
-    required this.imageUrl,
-    required this.createdAt,
-  });
-
-  Future<List<Article>> getArticles() async {
-    List<Article> articles = [
-      Article(
-        id: 1,
-        title:
-            'Proin purus est, lobortis a rhoncus nec, scelerisque quis risus.',
-        subtitle:
-            'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
-        body:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ex turpis. Duis odio nibh, bibendum ut pharetra non, laoreet nec elit. Vestibulum non neque ante. Sed non magna erat. Pellentesque quis ex porta, pretium tortor eu, eleifend lectus. Curabitur ultricies tristique maximus. Morbi lobortis vehicula dignissim. Proin cursus, tortor in malesuada sagittis, lorem ipsum porta risus, at sodales mi quam ut nisi. Aenean metus libero, venenatis vitae nibh vitae, porttitor iaculis purus. In est libero, tempus tempus purus sit amet, consequat faucibus ligula. Aliquam quis leo lacinia, euismod nibh sit amet, lacinia magna. Mauris laoreet nulla in libero tincidunt mollis.',
-        author: 'Author 1',
-        authorImageUrl:
-            'https://cdn.pixabay.com/photo/2017/08/30/12/45/girl-2696947_1280.jpg',
-        category: 'Salud',
-        imageUrl:
-            'https://cdn.pixabay.com/photo/2023/08/02/17/53/peach-8165738_1280.jpg',
-        createdAt: DateTime.now().subtract(const Duration(hours: 1)),
-      ),
-      Article(
-        id: 2,
-        title: 'Donec accumsan urna varius molestie ultrices.',
-        subtitle:
-            '2 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
-        body:
-            '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ex turpis. Duis odio nibh, bibendum ut pharetra non, laoreet nec elit. Vestibulum non neque ante. Sed non magna erat. Pellentesque quis ex porta, pretium tortor eu, eleifend lectus. Curabitur ultricies tristique maximus. Morbi lobortis vehicula dignissim. Proin cursus, tortor in malesuada sagittis, lorem ipsum porta risus, at sodales mi quam ut nisi. Aenean metus libero, venenatis vitae nibh vitae, porttitor iaculis purus. In est libero, tempus tempus purus sit amet, consequat faucibus ligula. Aliquam quis leo lacinia, euismod nibh sit amet, lacinia magna. Mauris laoreet nulla in libero tincidunt mollis.',
-        author: 'Author 2',
-        authorImageUrl:
-            'https://cdn.pixabay.com/photo/2017/06/24/02/56/art-2436545_1280.jpg',
-        category: 'Dietas',
-        imageUrl:
-            'https://cdn.pixabay.com/photo/2018/03/13/18/30/food-3223286_1280.jpg',
-        createdAt: DateTime.now().subtract(const Duration(hours: 7)),
-      ),
-      Article(
-        id: 3,
-        title: 'Cras id eros varius, commodo eros eget, efficitur purus.',
-        subtitle:
-            '3 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
-        body:
-            '3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ex turpis. Duis odio nibh, bibendum ut pharetra non, laoreet nec elit. Vestibulum non neque ante. Sed non magna erat. Pellentesque quis ex porta, pretium tortor eu, eleifend lectus. Curabitur ultricies tristique maximus. Morbi lobortis vehicula dignissim. Proin cursus, tortor in malesuada sagittis, lorem ipsum porta risus, at sodales mi quam ut nisi. Aenean metus libero, venenatis vitae nibh vitae, porttitor iaculis purus. In est libero, tempus tempus purus sit amet, consequat faucibus ligula. Aliquam quis leo lacinia, euismod nibh sit amet, lacinia magna. Mauris laoreet nulla in libero tincidunt mollis.',
-        author: 'Author 3',
-        authorImageUrl:
-            'https://cdn.pixabay.com/photo/2016/11/21/14/53/man-1845814_1280.jpg',
-        category: 'Informacion',
-        imageUrl:
-            'https://cdn.pixabay.com/photo/2017/07/02/19/24/dumbbells-2465478_1280.jpg',
-        createdAt: DateTime.now().subtract(const Duration(hours: 6)),
-      ),
-    ];
-
-    try {
-      DataSnapshot snap = (await FirebaseDatabase.instance
-          .ref()
-          .child('Articles')
-          .once()) as DataSnapshot;
-      if (snap.exists) {
-        print(snap.value);
-      }
-
-      return articles;
-    } catch (e) {
-      print('Error: $e');
-      return articles;
-    }
-  }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props =>
-      [id, title, subtitle, body, author, imageUrl, createdAt];
-}
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';*/
+import 'package:firebase_database/firebase_database.dart';
 
 class Article {
   final String id;
@@ -123,7 +27,7 @@ class Article {
     required this.createdAt,
   });
 
-  factory Article.fromSnapshot(DataSnapshot snapshot, value) {
+  factory Article.fromSnapshot(DatabaseDataSnapshot snapshot) {
     final dynamic data = snapshot.value;
     if (data is Map<dynamic, dynamic>) {
       return Article(
@@ -146,32 +50,104 @@ class Article {
     List<Article> articles = [];
 
     try {
-      DataSnapshot snap = (await FirebaseDatabase.instance
-          .ref()
-          .child('Articles')
-          .once()) as DataSnapshot;
+      DatabaseEvent event =
+          await FirebaseDatabase.instance.ref().child('Articles').once();
 
-      if (snap.exists) {
-        DataSnapshot snap = (await FirebaseDatabase.instance
-            .ref()
-            .child('Articles')
-            .once()) as DataSnapshot;
-      } else {
-        print('Snapshot value is not a Map');
+      DataSnapshot snapshot = event.snapshot;
+      if (snapshot.exists) {
+        print(snapshot.value);
+        List<dynamic> data = snapshot.value as List<dynamic>;
+        for (var articleData in data) {
+          if (articleData != null) {
+            final articleSnapshot = DatabaseDataSnapshot(
+              key: data.indexOf(articleData).toString(),
+              value: articleData,
+            );
+            articles.add(Article.fromSnapshot(articleSnapshot));
+          }
+        }
       }
       return articles;
     } catch (e) {
       print('Error: $e');
       return articles;
     }
-/*
-    final databaseReference =
-        FirebaseDatabase.instance.ref().child('Articles').once();
-    final snapshot = await databaseReference;
-    final data = snapshot.snapshot.value as Map<dynamic, dynamic>;
+  }
+}
 
-    return data.entries
-        .map((entry) => Article.fromSnapshot(entry.value))
-        .toList();*/
+class DatabaseDataSnapshot {
+  final String? key;
+  final dynamic value;
+
+  DatabaseDataSnapshot({required this.key, required this.value});
+}*/
+
+import 'package:firebase_database/firebase_database.dart';
+
+class Article {
+  final String id;
+  final String title;
+  final String subtitle;
+  final String body;
+  final String author;
+  final String authorImageUrl;
+  final String category;
+  final String imageUrl;
+  final String createdAt;
+
+  Article({
+    required this.id,
+    required this.title,
+    required this.subtitle,
+    required this.body,
+    required this.author,
+    required this.authorImageUrl,
+    required this.category,
+    required this.imageUrl,
+    required this.createdAt,
+  });
+
+  factory Article.fromMap(Map<dynamic, dynamic> data, String id) {
+    return Article(
+      id: id,
+      title: data['title'] as String? ?? 'No Title',
+      subtitle: data['subtitle'] as String? ?? 'No Subtitle',
+      body: data['body'] as String? ?? 'No Body',
+      author: data['author'] as String? ?? 'No Author',
+      authorImageUrl: data['authorImageUrl'] as String? ?? '',
+      category: data['category'] as String? ?? 'No Category',
+      imageUrl: data['imageUrl'] as String? ?? '',
+      createdAt: data['createdAt'] as String? ?? '',
+    );
+  }
+
+  static Future<List<Article>> getArticles() async {
+    List<Article> articles = [];
+    print(articles);
+
+    try {
+      DatabaseEvent event =
+          await FirebaseDatabase.instance.ref().child('Articles').once();
+
+      DataSnapshot snapshot = event.snapshot;
+
+      if (snapshot.exists) {
+        final data = snapshot.value as List<dynamic>?;
+
+        if (data != null) {
+          for (var item in data) {
+            if (item != null && item is Map<dynamic, dynamic>) {
+              String id = item['id'] as String? ?? '';
+              articles.add(Article.fromMap(item, id));
+            }
+          }
+        }
+      }
+
+      return articles;
+    } catch (e) {
+      print('Error: $e');
+      return articles;
+    }
   }
 }

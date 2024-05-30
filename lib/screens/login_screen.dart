@@ -27,18 +27,12 @@ class LoginScreen extends StatelessWidget {
     }
   }
 
-<<<<<<< HEAD
-  Future<String?> _signupUser(SignupData data) {
-    debugPrint('Sign up Name: ${data.name}, Password: ${data.password}');
-    return Future.delayed(loginTime).then((_) {
-=======
   Future<String?> _signupUser(SignupData data) async {
     try {
       await firebase_auth.FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: data.name!,
         password: data.password!,
       );
->>>>>>> fb4fafabbe57723cbfd28682ef73b3413bcd5b7b
       return null;
     } on firebase_auth.FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

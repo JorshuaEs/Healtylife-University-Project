@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:healty_life/screens/account_screen.dart';
+import 'package:healty_life/screens/edit_account_screen.dart';
+import 'package:healty_life/screens/theme_changer_screen.dart';
+import 'package:healty_life/screens/theme_screen.dart';
 import 'package:healty_life/utils/utils.dart';
 export 'package:healty_life/routes/app_routes.dart';
 
@@ -62,10 +66,22 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};
     appRoutes.addAll({'home': (BuildContext context) => const HomeScreen()});
+
     for (final option in menuOptions) {
       appRoutes
           .addAll({option.route!: (BuildContext context) => option.screen!});
     }
+
+    // Agrega la ruta para AccountScreen sin incluirla en menuOptions
+    appRoutes.addAll({
+      AccountScreen.routeName: (BuildContext context) => const AccountScreen()
+    });
+    appRoutes.addAll({
+      EditAccountScreen.routeName: (BuildContext context) => const EditAccountScreen()
+    });
+    appRoutes.addAll({
+      ThemeScreen.routeName: (BuildContext context) => const ThemeScreen()
+    });
     return appRoutes;
   }
 }

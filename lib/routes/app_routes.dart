@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healty_life/screens/calorias_screen.dart';
 import 'package:healty_life/utils/utils.dart';
 export 'package:healty_life/routes/app_routes.dart';
 
@@ -34,7 +35,7 @@ class AppRoutes {
       title: 'Calories',
       icon: Icons.food_bank,
       route: '/Calorias',
-      screen: CaloriesCalculatorScreen(),
+      screen: CaloriesScreen(),
     ),
     MenuOption(
       title: 'Articles',

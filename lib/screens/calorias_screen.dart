@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CaloriesCalculatorScreen extends StatefulWidget {
+class CaloriesScreen extends StatefulWidget {
   static const String routeName = '/Calories';
   @override
   _CaloriesCalculatorScreenState createState() =>
       _CaloriesCalculatorScreenState();
 }
 
-class _CaloriesCalculatorScreenState extends State<CaloriesCalculatorScreen> {
+class _CaloriesCalculatorScreenState extends State<CaloriesScreen> {
   double weight = 70; // Peso predeterminado en kilogramos
   double caloriesBurned = 0;
 

@@ -29,7 +29,8 @@ class MainApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         LoadingScreen.routeName: (context) => const LoadingScreen(),
         ArticleScreen.routeName: (context) => const ArticleScreen(),
-        SettingsScreen.routeName: (context) => const SettingsScreen()
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
+        CaloriesScreen.routeName: (context) => CaloriesScreen(),
       },
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:healty_life/widgets/settings_tile.dart';
-import 'package:healty_life/utils/utils.dart';
+//import 'package:healty_life/utils/utils.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);

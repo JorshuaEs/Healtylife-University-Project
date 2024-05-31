@@ -6,25 +6,26 @@ class ArticleScreen extends StatelessWidget {
   const ArticleScreen({Key? key}) : super(key: key);
 
   static const String routeName = '/article';
+
   @override
   Widget build(BuildContext context) {
     final Article article =
         ModalRoute.of(context)!.settings.arguments as Article;
+
     return ImageContainer(
       width: double.infinity,
       imageUrl: article.imageUrl,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Colors.transparent,
-            elevation: 0),
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         extendBodyBehindAppBar: true,
         body: ListView(
           children: [
-            _ArticleHeadline(
-              article: article,
-            ),
+            _ArticleHeadline(article: article),
             _ArticleBody(article: article),
           ],
         ),
@@ -35,9 +36,9 @@ class ArticleScreen extends StatelessWidget {
 
 class _ArticleBody extends StatelessWidget {
   const _ArticleBody({
-    super.key,
+    Key? key,
     required this.article,
-  });
+  }) : super(key: key);
 
   final Article article;
 
@@ -83,45 +84,46 @@ class _ArticleBody extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                      '${DateTime.now().difference(article.createdAt).inHours}h',
-                      style: Theme.of(context).textTheme.bodyMedium!),
+                    article.createdAt,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ],
               ),
+              const SizedBox(width: 10.0),
             ],
           ),
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 20),
           Text(
             article.title,
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
-                  /* color: Colors.black,
-                      height: 1.25,*/
                 ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Text(
             article.body,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   height: 1.5,
                 ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           GridView.builder(
-              shrinkWrap: true,
-              itemCount: 2,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.25,
-              ),
-              itemBuilder: (contex, index) {
-                return ImageContainer(
-                    width: MediaQuery.of(context).size.width * 0.42,
-                    imageUrl:
-                        'https://cdn.pixabay.com/photo/2020/12/08/02/06/flowers-5813227_1280.jpg',
-                    margin: const EdgeInsets.only(right: 5.0, bottom: 5.0));
-              }),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return ImageContainer(
+                width: MediaQuery.of(context).size.width * 0.42,
+                imageUrl: article.imageUrl,
+                borderRadius: 5,
+              );
+            },
+          ),
         ],
       ),
     );
@@ -130,9 +132,9 @@ class _ArticleBody extends StatelessWidget {
 
 class _ArticleHeadline extends StatelessWidget {
   const _ArticleHeadline({
-    super.key,
+    Key? key,
     required this.article,
-  });
+  }) : super(key: key);
 
   final Article article;
 
@@ -148,10 +150,12 @@ class _ArticleHeadline extends StatelessWidget {
           CustomTag(
             backgroundColor: Colors.grey.withAlpha(150),
             children: [
-              Text(article.category,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                      )),
+              Text(
+                article.category,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
             ],
           ),
           const SizedBox(height: 10),

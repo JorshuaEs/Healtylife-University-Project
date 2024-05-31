@@ -3,6 +3,11 @@ import 'package:healty_life/models/article_model.dart';
 import 'package:healty_life/widgets/widgets.dart';
 
 import 'package:healty_life/screens/screens.dart';
+/*
+import 'package:flutter/material.dart';
+import 'package:healthy_life/models/article_model.dart';
+import 'package:healthy_life/widgets/widgets.dart';
+import 'package:healthy_life/screens/screens.dart';*/
 
 class ArticleHomeScreen extends StatelessWidget {
   const ArticleHomeScreen({Key? key}) : super(key: key);
@@ -17,13 +22,27 @@ class ArticleHomeScreen extends StatelessWidget {
       initialIndex: 0,
       length: tabs.length,
       child: Scaffold(
-        /*appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),*/
-        body: ListView(
-            padding: const EdgeInsets.all(20),
-            children: [const _DiscoverArticle(), _CategoryArticle(tabs: tabs)]),
+        body: FutureBuilder<List<Article>>(
+          future: Article.getArticles(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No articles found'));
+            } else {
+              final articles = snapshot.data!;
+              return ListView(
+                padding: const EdgeInsets.all(20),
+                children: [
+                  const _DiscoverArticle(),
+                  _CategoryArticle(tabs: tabs, articles: articles),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -31,99 +50,104 @@ class ArticleHomeScreen extends StatelessWidget {
 
 class _CategoryArticle extends StatelessWidget {
   const _CategoryArticle({
-    super.key,
+    Key? key,
     required this.tabs,
-  });
+    required this.articles,
+  }) : super(key: key);
 
   final List<String> tabs;
+  final List<Article> articles;
 
   @override
   Widget build(BuildContext context) {
-    final articles = Article.articles;
-
     return Column(
       children: [
         TabBar(
-            isScrollable: true,
-            indicatorColor: Colors.black,
-            tabs: tabs
-                .map(
-                  (tab) => Tab(
-                    icon: Text(tab,
-                        style:
-                            Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                )),
-                  ),
-                )
-                .toList()),
+          isScrollable: true,
+          indicatorColor: Colors.black,
+          tabs: tabs
+              .map((tab) => Tab(
+                    child: Text(
+                      tab,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                    ),
+                  ))
+              .toList(),
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height,
           child: TabBarView(
-            children: tabs
-                .map(
-                  (tab) => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: articles.length,
-                    itemBuilder: ((context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, ArticleScreen.routeName,
-                              arguments: articles[index]);
-                        },
-                        child: Row(
-                          children: [
-                            ImageContainer(
-                              width: 80,
-                              height: 80,
-                              margin: const EdgeInsets.all(10.0),
-                              borderRadius: 5,
-                              imageUrl: articles[index].imageUrl,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+            children: tabs.map((tab) {
+              final filteredArticles =
+                  articles.where((article) => article.category == tab).toList();
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: filteredArticles.length,
+                itemBuilder: (context, index) {
+                  final article = filteredArticles[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ArticleScreen.routeName,
+                        arguments: article,
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        ImageContainer(
+                          width: 80,
+                          height: 80,
+                          margin: const EdgeInsets.all(10.0),
+                          borderRadius: 5,
+                          imageUrl: article.imageUrl,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                article.title,
+                                maxLines: 2,
+                                overflow: TextOverflow.clip,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
                                 children: [
-                                  Text(articles[index].title,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.clip,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.schedule,
-                                        color: Colors.grey,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        '${DateTime.now().difference(articles[index].createdAt).inHours} hours ago',
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ],
+                                  const Icon(
+                                    Icons.schedule,
+                                    color: Colors.grey,
+                                    size: 18,
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    '${article.createdAt}',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      );
-                    }),
-                  ),
-                )
-                .toList(),
+                      ],
+                    ),
+                  );
+                },
+              );
+            }).toList(),
           ),
         ),
       ],
@@ -133,8 +157,8 @@ class _CategoryArticle extends StatelessWidget {
 
 class _DiscoverArticle extends StatelessWidget {
   const _DiscoverArticle({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -146,10 +170,10 @@ class _DiscoverArticle extends StatelessWidget {
         children: [
           Text(
             'Articles',
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Colors.black, fontWeight: FontWeight.w900),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w900,
+                ),
           ),
           const SizedBox(height: 5),
           Text(
@@ -167,11 +191,12 @@ class _DiscoverArticle extends StatelessWidget {
                 color: Colors.grey,
               ),
               suffixIcon: const RotatedBox(
-                  quarterTurns: 1,
-                  child: Icon(
-                    Icons.tune,
-                    color: Colors.grey,
-                  )),
+                quarterTurns: 1,
+                child: Icon(
+                  Icons.tune,
+                  color: Colors.grey,
+                ),
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,

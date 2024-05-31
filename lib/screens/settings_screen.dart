@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:healty_life/screens/account_screen.dart';
+import 'package:healty_life/screens/edit_account_screen.dart';
+import 'package:healty_life/screens/theme_screen.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:healty_life/widgets/settings_tile.dart';
-//import 'package:healty_life/utils/utils.dart';
+import 'package:healty_life/utils/utils.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -30,7 +34,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.blue,
                 icon: Ionicons.person_circle_outline,
                 title: "Account",
-                onTap: () {},
+                onTap: () {
+                  // Navega a la pantalla de cuenta
+                  Navigator.pushNamed(context, AccountScreen.routeName);
+                },
               ),
               const SizedBox(
                 height: 10,
@@ -39,7 +46,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.green,
                 icon: Ionicons.pencil_outline,
                 title: "Edit Information",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, EditAccountScreen.routeName);
+                },
               ),
               const SizedBox(
                 height: 40,
@@ -48,16 +57,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.black,
                 icon: Ionicons.moon_outline,
                 title: "Theme",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ThemeScreen.routeName);
+                },
               ),
               const SizedBox(
                 height: 10,
-              ),
-              SettingsTile(
-                color: Colors.purple,
-                icon: Ionicons.language_outline,
-                title: "Language",
-                onTap: () {},
               ),
               const SizedBox(
                 height: 40,
@@ -66,7 +71,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.red,
                 icon: Ionicons.log_out_outline,
                 title: "Logout",
-                onTap: () {},
+                onTap: () {
+                  SystemNavigator.pop();
+                },
               ),
             ],
           ),

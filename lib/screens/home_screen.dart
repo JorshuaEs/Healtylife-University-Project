@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:healty_life/routes/app_routes.dart';
 import 'package:healty_life/screens/screens.dart';
 
@@ -13,11 +15,38 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Widget _currentScreen;
+  String userName = 'User';
+  String userEmail = 'Por favor inicia sesion';
+  User? currentUser;
+
   @override
   void initState() {
     super.initState();
-
     _currentScreen = const LoadingScreen();
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    try {
+      currentUser = FirebaseAuth.instance.currentUser;
+
+      if (currentUser != null) {
+        userEmail = currentUser!.email ?? 'Correo no disponible';
+
+        DatabaseEvent event = await FirebaseDatabase.instance.ref().child('User').child('1').once();
+
+        DataSnapshot snapshot = event.snapshot;
+
+        if (snapshot.exists) {
+          Map<String, dynamic> userData = Map<String, dynamic>.from(snapshot.value as Map);
+          setState(() {
+            userName = userData['nombre'] ?? 'Usuario';
+          });
+        }
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+    }
   }
 
   Widget _getDrawer() {
@@ -27,14 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const UserAccountsDrawerHeader(
-            accountName: Text('Usuario Prueba'),
-            accountEmail: Text('hunter@gmail.com'),
+          UserAccountsDrawerHeader(
+            accountName: Text(userName),
+            accountEmail: Text(userEmail),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
               child: Text(
-                'U',
-                style: TextStyle(fontSize: 40.0, color: Colors.black),
+                userName.isNotEmpty ? userName[0] : 'U',
+                style: const TextStyle(fontSize: 40.0, color: Colors.black),
               ),
             ),
           ),

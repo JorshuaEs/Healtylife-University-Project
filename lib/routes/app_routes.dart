@@ -78,7 +78,7 @@ class AppRoutes {
     });
     appRoutes.addAll({
       EditAccountScreen.routeName: (BuildContext context) =>
-          const EditAccountScreen()
+           EditAccountScreen()
     });
     appRoutes.addAll(
         {ThemeScreen.routeName: (BuildContext context) => const ThemeScreen()});

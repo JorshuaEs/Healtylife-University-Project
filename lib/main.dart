@@ -52,7 +52,7 @@ class MaterialAppWithTheme extends StatelessWidget {
         SettingsScreen.routeName: (context) => const SettingsScreen(),
         CaloriesScreen.routeName: (context) => CaloriesScreen(),
         AccountScreen.routeName: (context) => const AccountScreen(),
-        EditAccountScreen.routeName: (context) => const EditAccountScreen(),
+        EditAccountScreen.routeName: (context) => EditAccountScreen(),
         ThemeScreen.routeName: (context) => const ThemeScreen(),
       },
     );

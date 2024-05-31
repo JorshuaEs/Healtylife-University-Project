@@ -115,7 +115,7 @@ class _ArticleBody extends StatelessWidget {
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),
-            itemCount: 2,
+            itemCount: 1,
             itemBuilder: (context, index) {
               return ImageContainer(
                 width: MediaQuery.of(context).size.width * 0.42,

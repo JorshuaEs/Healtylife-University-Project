@@ -16,7 +16,7 @@ class _ArticleHomeScreenState extends State<ArticleHomeScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Article> _articles = [];
   List<Article> _filteredArticles = [];
-  List<String> tabs = ['Salud', 'Dietas', 'Informacion', 'Tips'];
+  List<String> tabs = ['Health', 'Diets', 'Information', 'Tips'];
 
   @override
   void initState() {

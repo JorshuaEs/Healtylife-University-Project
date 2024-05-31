@@ -52,16 +52,6 @@ class AppRoutes {
       route: '/settings',
       screen: const SettingsScreen(),
     ),
-    MenuOption(
-      title: 'Rate us',
-      icon: Icons.star,
-      /*route: '/Sizedbox',
-      screen: const SizedBox(),*/
-      onTap: () {
-        print('111111111111111111111111111111111111111111111111111111111111');
-        /*_showRateUsDialog();*/
-      },
-    ),
   ];
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};
@@ -77,8 +67,7 @@ class AppRoutes {
       AccountScreen.routeName: (BuildContext context) => const AccountScreen()
     });
     appRoutes.addAll({
-      EditAccountScreen.routeName: (BuildContext context) =>
-           EditAccountScreen()
+      EditAccountScreen.routeName: (BuildContext context) => EditAccountScreen()
     });
     appRoutes.addAll(
         {ThemeScreen.routeName: (BuildContext context) => const ThemeScreen()});

@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _currentScreen = const LoadingScreen();
+    _currentScreen = const BotellaScreen();
     fetchUserData();
   }
 
@@ -33,16 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
       if (currentUser != null) {
         userEmail = currentUser!.email ?? 'Correo no disponible';
 
-        DatabaseEvent event = await FirebaseDatabase.instance.ref().child('User').child('1').once();
-
-        DataSnapshot snapshot = event.snapshot;
-
-        if (snapshot.exists) {
-          Map<String, dynamic> userData = Map<String, dynamic>.from(snapshot.value as Map);
-          setState(() {
-            userName = userData['nombre'] ?? 'Usuario';
-          });
-        }
+        DatabaseReference userRef = FirebaseDatabase.instance.ref().child('User').child('1');
+        userRef.onValue.listen((event) {
+          DataSnapshot snapshot = event.snapshot;
+          if (snapshot.exists) {
+            Map<String, dynamic> userData = Map<String, dynamic>.from(snapshot.value as Map);
+            setState(() {
+              userName = userData['nombre'] ?? 'Usuario';
+            });
+          }
+        });
       }
     } catch (e) {
       print('Error fetching user data: $e');

@@ -1,5 +1,3 @@
-// EditAccountScreen.dart
-
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -142,7 +140,7 @@ class EditAccountScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => _saveGeneralInfo(context),
-              child: const Text('Guardar'),
+              child: const Text('Save'),
             ),
           ],
         ),

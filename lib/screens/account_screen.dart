@@ -45,6 +45,18 @@ class _AccountScreenState extends State<AccountScreen> {
     }
   }
 
+  // Método para actualizar los datos del usuario
+  Future<void> updateUser() async {
+    try {
+      // Aquí realizas la actualización en la base de datos
+
+      // Después de realizar la actualización, vuelves a obtener los datos del usuario
+      await fetchUserData();
+    } catch (e) {
+      print('Error updating user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,10 +95,10 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Nombre: ${accountInfo['nombre']}'),
-                              Text('Edad: ${accountInfo['edad']}'),
-                              Text('Peso: ${accountInfo['peso']}'),
-                              Text('Estatura: ${accountInfo['estatura']}'),
+                              Text('Name: ${accountInfo['nombre']}'),
+                              Text('Age: ${accountInfo['edad']}'),
+                              Text('Weigth (kg): ${accountInfo['peso']}'),
+                              Text('Heigth (cm): ${accountInfo['estatura']}'),
                             ],
                           ),
                         ),
@@ -94,7 +106,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      'Cuenta',
+                      'Account',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -107,8 +119,8 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Correo: ${accountInfo['correo']}'),
-                              Text('Contraseña: ${accountInfo['contraseña']}'),
+                              Text('Email: ${accountInfo['correo']}'),
+                              Text('Pass ${accountInfo['contraseña']}'),
                             ],
                           ),
                         ),
@@ -121,9 +133,11 @@ class _AccountScreenState extends State<AccountScreen> {
                           context,
                           EditAccountScreen.routeName,
                           arguments: accountInfo,
-                        );
+                        ).then((_) {
+                          updateUser();
+                        });
                       },
-                      child: const Text('Editar Información'),
+                      child: const Text('Edit Information'),
                     ),
                   ],
                 ),
